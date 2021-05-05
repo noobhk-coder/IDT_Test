@@ -45,42 +45,47 @@ function Main() {
 
 
                 <div>
-                    Check out the Favorite one's of users
+                    Check out the Favorite one's of our users here &nbsp;&nbsp;
                     <Link to={`/favorite`}>
                         <button type='button'>Favorites</button>
                     </Link>
                 </div>
 
-                <input type='text' placeholder='Search' onChange={onInputchange}></input><br />
-                <Link to={`/name/${value}`}>
-                    <button type='submit'>SearchBy Name</button>
-                </Link>
-                <p> OR </p>
-                <Link to={`/ingredient/${value}`}>
-                    <button type='submit'>SearchBy Ingredient</button>
-                </Link>
-
-                <p>You can also search recipe according to their Categories</p>
-
                 <div>
+                    <p>How do you want to search a Recipie?</p>
+                    <div>
+                        <input type='text' placeholder='SearchBy?' onChange={onInputchange}></input><br />
+                        <Link to={`/name/${value}`}>
+                            <button type='submit'>Name</button>
+                        </Link>
+                    &nbsp;&nbsp;&nbsp;OR&nbsp;&nbsp;&nbsp;
 
-                    {cat ? (cat.map((rName) =>
-
-                        <li>
-                            <Link to={`/category/${rName.strCategory}`}>
-                                <p1>{rName.strCategory}</p1>
-                            </Link>
-                        </li>
-
-                    )) : (
-                        <p>Data Unavailable Currently</p>
-                    )}
-
+                        <Link to={`/ingredient/${value}`}>
+                            <button type='submit'>Ingredient</button>
+                        </Link>
+                    </div>
                 </div>
 
+                <div>
+                    <p>You can also search recipe according to their Categories</p>
+
+                    <div>
+
+                        {cat ? (cat.map((rName) =>
+
+                            <li>
+                                <Link to={`/category/${rName.strCategory}`}>
+                                    <p1>{rName.strCategory}</p1>
+                                </Link>
+                            </li>
+
+                        )) : (
+                            <p>Data Unavailable Currently</p>
+                        )}
+
+                    </div>
+                </div>
             </div>
-
-
 
         </div>
 

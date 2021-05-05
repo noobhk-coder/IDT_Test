@@ -68,10 +68,27 @@ function incrementView(uid, rName) {
     recipRef.set({ reads: increment, recipeName: rName }, { merge: true });
 }
 
+async function getAllViews() {
+
+    const returnData = [];
+    const snapshot = await db.collection("Views").get()
+        .then(function (docRef) {
+            docRef.forEach((doc) => {
+                returnData.push(doc.data());
+            });
+        })
+        .catch(function (error) {
+            console.error("Error adding document: ", error);
+        });
+
+    return returnData;
+}
+
 export {
     addFav,
     getFav,
     removeFav,
     getAllFav,
-    incrementView
+    incrementView,
+    getAllViews
 };

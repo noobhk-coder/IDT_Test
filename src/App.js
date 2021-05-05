@@ -9,6 +9,7 @@ import Main from './components/Main';
 import Error from './components/Error';
 import Category from './components/Category';
 import Favorite from './components/Favorite';
+import Views from './components/Views';
 import firebase from './firebase';
 
 
@@ -32,6 +33,7 @@ function App() {
           <Route path='/category/:search' exact component={Category} />
           <Route path='/namer/:id' exact component={NameId} />
           <Route path='/favorite' exact component={Favorite} />
+          <Route path='/views' exact component={Views} />
           <Route path='*' exact component={Error} status={404} />
         </Switch>
       </Router>
