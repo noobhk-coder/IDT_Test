@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import '../App.css'
 
-function Main() {
+import Styles from './styles/Common.styles';
 
+function Main() {
+    const classes = Styles();
     const [value, setValue] = useState(undefined);
     const [cat, setCat] = useState(undefined);
 
@@ -36,58 +44,68 @@ function Main() {
     }
 
     return (
-        <div>
-            <div>
+        <Container>
+            <Box display='flex' flexDirection='column' justifyContent='center' className={classes.box}>
                 <div>
-                    <h1 className='Main-h1'>Welcome to the World of Cooking!</h1>
-                    <h2>Cooking is an art and I hope you would like it</h2>
+                    <Typography align='center' variant='h1' className={classes.heading}>Welcome to the World of Cooking!</Typography>
+                    <Typography align='center' variant='h2'>Cooking is an art and I hope you would like it</Typography>
                 </div>
 
 
-                <div>
-                    Check out the Favorite one's of our users here &nbsp;&nbsp;
+                <Box display='flex' mt={3} flexDirection='row' justifyContent='center' alignItems='center' >
+
+                <Typography align='center' variant='h2' className={classes.search}> 
+                Check out the Favorite one's here 
+                </Typography>
                     <Link to={`/favorite`}>
-                        <button type='button'>Favorites</button>
+                        <Button variant='contained' className={classes.btn}>Favorites</Button>
                     </Link>
-                </div>
+                </Box>
 
-                <div>
-                    <p>How do you want to search a Recipie?</p>
-                    <div>
-                        <input type='text' placeholder='SearchBy?' onChange={onInputchange}></input><br />
+                <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center' >
+                    <Typography align='center' variant='h2' className={classes.search}>How do you want to search a Recipie?</Typography>
+                        <TextField className={classes.textField}  variant='outlined' type='text' onChange={onInputchange} placeholder='SearchBy?' InputProps={{
+                      classes: { input: classes.input },
+                      disableUnderline: true,
+                    }}/>
+                        <div>
                         <Link to={`/name/${value}`}>
-                            <button type='submit'>Name</button>
+                            <Button variant='contained' className={classes.btn}>Name</Button>
                         </Link>
-                    &nbsp;&nbsp;&nbsp;OR&nbsp;&nbsp;&nbsp;
+                    
 
                         <Link to={`/ingredient/${value}`}>
-                            <button type='submit'>Ingredient</button>
+                            <Button variant='contained' className={classes.btn}>Ingredient</Button>
                         </Link>
                     </div>
-                </div>
+                </Box>
 
                 <div>
-                    <p>You can also search recipe according to their Categories</p>
+                    <Typography align='center' variant='subtitle1' className={classes.subheading}>You can also search recipe according to their Categories</Typography>
 
-                    <div>
+                    <Grid container spacing={2}>
 
                         {cat ? (cat.map((rName) =>
 
-                            <li>
-                                <Link to={`/category/${rName.strCategory}`}>
-                                    <p1>{rName.strCategory}</p1>
+                            <Grid item xs={12} lg={2}>
+
+                              <Link to={`/category/${rName.strCategory}`} >
+                                    <Box p={4} display='flex' justifyContent='center' alignItems='center' className={classes.card}>
+                                        <Typography className={classes.name}>{rName.strCategory}</Typography>
+                                    </Box>
+
                                 </Link>
-                            </li>
+                            </Grid>
 
                         )) : (
                             <p>Data Unavailable Currently</p>
                         )}
 
-                    </div>
+                    </Grid>
                 </div>
-            </div>
+            </Box>
 
-        </div>
+        </Container>
 
     )
 

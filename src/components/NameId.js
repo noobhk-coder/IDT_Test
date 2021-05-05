@@ -2,8 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../App.css'
 import { addFav,getFav,removeFav, incrementView } from '../firebaseFun';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+
+
+import Styles from './styles/Common.styles';
 
 function NameId(props) {
+    const classes = Styles();
+
     const [nameData, setNameData] = useState(undefined);
     const [load, setload] = useState(true);
     const [fav, setFav] = useState(false);
@@ -37,7 +47,10 @@ function NameId(props) {
             let x = 'strMeasure' + i;
             let value = nameData[s];
             if (value != null && value.length > 0) {
-                content.push(<li key={i}>{value} {"==> "} {nameData[x]}</li>);
+                content.push(
+                    <Grid xs={12} lg={2}>
+                <Box p={2} display='flex' justifyContent='center' alignItems='center' className={classes.ingredBox} key={i}>{value} {"==> "} {nameData[x]}</Box>
+                </Grid>);
             }
         }
         return content;
@@ -77,7 +90,7 @@ function NameId(props) {
     }
 
     return (
-        <div>
+        <Container>
             {load ? (
                 <p>Loading the recipe, if not loaded No such recipe with given Id.</p>
             ) : (
@@ -87,12 +100,12 @@ function NameId(props) {
 
                     {fav ? (
                         <div>
-                            <button type="button" onClick={() => removeFavorite(nameData.idMeal)}>Remove as Favorite</button>
+                            <Button variant='contained' className={classes.btn} type="button" onClick={() => removeFavorite(nameData.idMeal)}>Remove as Favorite</Button>
                         </div>
 
                     ) : (
                         <div>
-                            <button type="button" onClick={() => addFavorite(nameData.idMeal, nameData.strMeal)}>Add to Favorite</button>
+                            <Button variant='contained' type="button" className={classes.btn} onClick={() => addFavorite(nameData.idMeal, nameData.strMeal)}>Add to Favorite</Button>
                         </div>
 
                     )}
@@ -100,15 +113,21 @@ function NameId(props) {
                     <div>
                         <p>Category: <b>{nameData && nameData.strCategory}</b></p>
 
-                        <div> <ul>{getIngredientContent(content)}</ul></div>
+                        <div> 
+                            {/* <Box display='flex' flexDirection='row' alignItems='center'> */}
+                            <Grid container spacing={2}>
+                            {getIngredientContent(content)}
+                            </Grid>
+                            {/* </Box> */}
+                            </div>
 
-                        <p>Instructions: {nameData && nameData.strInstructions}</p>
+                        <Typography align='left' variant='subtitle1' className={classes.para}>Instructions: {nameData && nameData.strInstructions}</Typography>
 
                     </div>
 
                 </div>
             )}
-        </div>
+        </Container>
     )
 }
 

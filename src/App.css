@@ -26,6 +26,17 @@
   color: white;
 }
 
+.Main-div{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.Main-cat{
+  padding-left: 0;
+  
+}
+
 .App-link {
   color: #61dafb;
 }

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import { getAllFav } from '../firebaseFun';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 
 function Favorite() {
 
@@ -22,12 +24,11 @@ function Favorite() {
     )
 
     return (
-        <div>
-            <div>
+        <Container>
+            <Box mt={3}>
             Favorite page. These are our users preferences.
-            </div>
+            </Box>
             
-
             <div>
                 {favData ? (favData.map((rName) =>
 
@@ -44,7 +45,7 @@ function Favorite() {
                     </div>
                 )}
             </div>
-        </div>
+        </Container>
     )
 
 }

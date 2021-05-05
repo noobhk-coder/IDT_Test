@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../App.css'
+import Container from '@material-ui/core/Container';
 
 function Ingredient(props) {
 
@@ -44,7 +45,7 @@ function Ingredient(props) {
 
     return (
 
-        <div>
+        <Container>
             {load ? (
                 <p>Loading the recipe for the ingredient, if Not loaded recipe not present search again.</p>
             ) : (
@@ -70,7 +71,7 @@ function Ingredient(props) {
 
                 </div>
             )}
-        </div>
+        </Container>
 
     )
 }

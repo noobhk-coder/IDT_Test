@@ -3,6 +3,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../App.css'
 
+import Container from '@material-ui/core/Container';
+
+
 function Name(props) {
 
     const [nameData, setNameData] = useState(undefined);
@@ -41,7 +44,7 @@ function Name(props) {
 
     return (
 
-        <div>
+        <Container>
             {load ? (
                 <p>Loading the recipe, if Not loaded recipe not present select from below list or Enter again.</p>
             ) : (
@@ -66,7 +69,7 @@ function Name(props) {
 
                 </div>
             )}
-        </div>
+        </Container>
     )
 }
 

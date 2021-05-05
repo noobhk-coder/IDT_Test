@@ -12,11 +12,18 @@ import Favorite from './components/Favorite';
 import Views from './components/Views';
 import firebase from './firebase';
 
+// material ui imports
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import Box from '@material-ui/core/Box';
+
+// base components
+import theme from './theme';
+
 
 function App() {
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Router>
         <div>
           <header>
@@ -38,7 +45,7 @@ function App() {
         </Switch>
       </Router>
 
-    </div>
+    </ThemeProvider>
   );
 }
 
